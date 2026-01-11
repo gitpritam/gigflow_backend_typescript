@@ -1,0 +1,46 @@
+{
+  "name": "gigflow_backend_typescript",
+  "version": "1.0.0",
+  "description": "GigFlow - mini freelance market place",
+  "license": "ISC",
+  "author": "Pritam Majhi",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "SET NODE_ENV=dev& ts-node-dev --files --inspect --respawn src/index.ts",
+    "stage": "SET NODE_ENV=stage& ts-node-dev --files --inspect --respawn src/index.ts",
+    "prod": " node ./dist/index.js",
+    "start": "SET NODE_ENV=prod  & tsc & node ./dist/index.js",
+    "build": "tsc",
+    "lint": "eslint src --ext .js,.ts",
+    "lint:fix": "eslint src --ext .js,.ts --fix",
+    "format": "prettier --check \"src/**/*.{js,ts}\"",
+    "format:fix": "prettier --write \"src/**/*.{js,ts}\""
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.1.2",
+    "winston": "^3.19.0",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.0.6",
+    "eslint": "^9.39.2",
+    "globals": "^17.0.0",
+    "prettier": "3.7.4",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.52.0"
+  }
+}
