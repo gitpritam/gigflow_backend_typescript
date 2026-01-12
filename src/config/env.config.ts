@@ -41,6 +41,18 @@ class EnvConfig {
   get isProduction(): boolean {
     return this._nodeEnv === "prod";
   }
+
+  get jwtSecret(): string {
+    return this._jwtSecret;
+  }
+
+  get jwtExpiresIn(): string | number {
+    return this._jwtExpiresIn;
+  }
+
+  get bcryptSaltRounds(): number {
+    return this._bcryptSaltRounds;
+  }
 }
 
 export const env = new EnvConfig();
