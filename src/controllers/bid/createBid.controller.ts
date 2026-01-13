@@ -9,7 +9,7 @@ const createBidController = AsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = req.user;
     const { gigId, price, message } = req.body;
-
+    console.log(gigId, price, message);
     const gig = await Gig.findById(gigId);
     if (!gig) {
       return next(new CustomError(404, "Gig not found"));

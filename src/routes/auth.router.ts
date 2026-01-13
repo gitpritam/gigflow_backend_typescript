@@ -3,6 +3,7 @@ import {
   logoutController,
   signinController,
   signupController,
+  meController,
 } from "../controllers/auth";
 import authenticate from "../middlewares/auth.middleware";
 import { validateRequest } from "../middlewares/validate.middleware";
@@ -23,5 +24,6 @@ authRouter.post(
   signinController,
 );
 authRouter.post("/logout", authenticate, logoutController);
+authRouter.get("/me", authenticate, meController);
 
 export default authRouter;

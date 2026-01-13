@@ -41,6 +41,7 @@ const signinController = AsyncHandler(
       message: "User signed in successfully",
       result: {
         user,
+        token: accessToken,
       },
     });
   },
