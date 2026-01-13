@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express, { NextFunction, Request, Response } from "express";
+import http from "http";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import corsOptions from "./config/cors.config";
@@ -9,6 +10,7 @@ import MainRouter from "./routes";
 import globalErrorHandler from "./middlewares/globalErrorHandler.middleware";
 import connectDB from "./config/db.config";
 import { env } from "./config/env.config";
+import { initializeSocket } from "./config/socket.config";
 
 // Handle uncaught exceptions
 process.on("uncaughtException", (err: Error) => {
@@ -18,6 +20,7 @@ process.on("uncaughtException", (err: Error) => {
 });
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(cors(corsOptions));
 
@@ -38,11 +41,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(globalErrorHandler);
 
-//Connect to mongoDb
+initializeSocket(server);
 connectDB();
 
 const PORT = env.port;
-const server = app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
