@@ -117,6 +117,8 @@ JWT_EXPIRES_IN=30d
 
 # Bcrypt
 BCRYPT_SALT_ROUNDS=12
+
+#
 ```
 
 > ⚠️ **Important:** Change the `JWT_SECRET` to a strong, random string in production!

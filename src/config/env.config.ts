@@ -5,6 +5,7 @@ class EnvConfig {
   private readonly _jwtSecret: string;
   private readonly _jwtExpiresIn: string;
   private readonly _bcryptSaltRounds: number;
+  private readonly _corsOrigin: string;
 
   constructor() {
     this._nodeEnv = process.env.NODE_ENV || "dev";
@@ -16,6 +17,7 @@ class EnvConfig {
       process.env.BCRYPT_SALT_ROUNDS || "12",
       10,
     );
+    this._corsOrigin = process.env.CORS_ORIGIN || "";
   }
 
   get nodeEnv(): string {
@@ -52,6 +54,10 @@ class EnvConfig {
 
   get bcryptSaltRounds(): number {
     return this._bcryptSaltRounds;
+  }
+
+  get corsOrigin(): string {
+    return this._corsOrigin;
   }
 }
 
