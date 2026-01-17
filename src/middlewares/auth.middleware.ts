@@ -10,7 +10,7 @@ const authenticate = AsyncHandler(
     //headers = authorization -> Bearer "token"
     const token =
       req.cookies?.token || req.headers.authorization?.split(" ")[1];
-
+    console.log(req.cookies);
     if (!token) {
       return next(
         new CustomError(401, "Unauthorized: Access token is required."),
