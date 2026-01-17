@@ -2,6 +2,7 @@ import { Server } from "socket.io";
 import jwt from "jsonwebtoken";
 import IJWTPayload from "../@types/interface/jwtPayload.interface";
 import { env } from "./env.config";
+import cookie from "cookie";
 
 let io: Server;
 
@@ -9,14 +10,21 @@ let io: Server;
 export const initializeSocket = (server: any) => {
   io = new Server(server, {
     cors: {
-      origin: ["http://127.0.0.1:5173", "http://localhost:5173"],
+      origin: [
+        env.corsOrigin,
+        "http://127.0.0.1:5173",
+        "http://localhost:5173",
+      ],
       credentials: true,
     },
   });
 
   // Socket.IO authentication middleware
   io.use(async (socket, next) => {
-    const token = socket.handshake.auth.token;
+    const rawCookie = socket.handshake.headers.cookie;
+    const cookies = cookie.parse(rawCookie || "");
+    const token = cookies["token"];
+    console.log("Socket.IO auth token:", token);
     if (!token) {
       return next(new Error("Authentication error: Token required"));
     }
