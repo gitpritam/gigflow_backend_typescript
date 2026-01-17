@@ -25,6 +25,7 @@ const corsOptions = {
       console.error(`Allowed origins: ${allowedOrigins.join(", ")}`);
       callback(new Error("Not allowed by CORS"));
     }
+    console.log("CORS check for origin:", allowedOrigins);
   },
   credentials: true,
 };
